@@ -142,7 +142,7 @@ export function Hero() {
                   height={320}
                   sizes="(max-width: 767px) 288px, 288px"
                   loading="eager"
-                  fetchpriority="high"
+                  {...({ fetchpriority: "high" } as Record<string, string>)}
                   decoding="async"
                   onError={handleAvatarError}
                   className="relative z-20 h-80 w-72 rounded-3xl border border-light-border object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03] group-focus-visible:scale-[1.03] dark:border-ink-border"
