@@ -1,9 +1,10 @@
-import { profile, navSections, builtWith } from '@/data/content'
-import type { SectionId } from '@/data/content'
-import { GitHubIcon, LinkedInIcon, MailIcon, ArrowUpIcon } from './icons'
+import { profile, navSections, builtWith } from "@/data/content";
+import type { SectionId } from "@/data/content";
+import { GitHubIcon, LinkedInIcon, MailIcon, ArrowUpIcon } from "./icons";
+import { scrollToSection } from "@/lib/scroll";
 
 export function Footer() {
-  const go = (id: SectionId) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  const go = (id: SectionId) => scrollToSection(id);
 
   return (
     <footer className="border-t border-light-border dark:border-ink-border">
@@ -31,7 +32,7 @@ export function Footer() {
             <span className="text-sm font-semibold">{profile.name}</span>
           </div>
           <p className="text-sm text-ink/60 dark:text-light/60">
-            {profile.title.split('·')[0].trim()} · {profile.location}
+            {profile.title.split("·")[0].trim()} · {profile.location}
           </p>
           <p className="inline-flex items-center gap-2 text-xs text-emerald-500">
             <span className="relative flex h-2 w-2">
@@ -42,7 +43,10 @@ export function Footer() {
           </p>
         </div>
 
-        <nav className="flex flex-col items-start gap-1.5 md:items-center" aria-label="Footer">
+        <nav
+          className="flex flex-col items-start gap-1.5 md:items-center"
+          aria-label="Footer"
+        >
           {navSections.map((s) => (
             <button
               key={s.id}
@@ -57,18 +61,34 @@ export function Footer() {
 
         <div className="flex flex-col items-start gap-3 md:items-end">
           <div className="flex items-center gap-3">
-            <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="link-quiet">
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              className="link-quiet"
+            >
               <GitHubIcon width={18} height={18} />
             </a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="link-quiet">
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="link-quiet"
+            >
               <LinkedInIcon width={18} height={18} />
             </a>
-            <a href={`mailto:${profile.email}`} aria-label="Email" className="link-quiet">
+            <a
+              href={`mailto:${profile.email}`}
+              aria-label="Email"
+              className="link-quiet"
+            >
               <MailIcon width={18} height={18} />
             </a>
             <button
               type="button"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="btn-ghost"
               aria-label="Back to top"
             >
@@ -81,12 +101,16 @@ export function Footer() {
 
       <div className="border-t border-light-border dark:border-ink-border">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-5 flex flex-col items-center justify-between gap-2 text-xs text-ink/50 dark:text-light/50 sm:flex-row">
-          <p>© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
           <p>
-            <a href={`mailto:${profile.email}`} className="link-quiet">{profile.email}</a>
+            © {new Date().getFullYear()} {profile.name}. All rights reserved.
+          </p>
+          <p>
+            <a href={`mailto:${profile.email}`} className="link-quiet">
+              {profile.email}
+            </a>
           </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }

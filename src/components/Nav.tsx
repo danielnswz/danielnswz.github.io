@@ -5,6 +5,7 @@ import { useActiveSection } from "@/hooks/useActiveSection";
 import { ThemeToggle } from "./ThemeToggle";
 import { DownloadIcon } from "./icons";
 import { analytics } from "@/lib/analytics";
+import { scrollToSection } from "@/lib/scroll";
 
 const handleResumeClick = () => analytics.resumeDownload("nav");
 
@@ -23,19 +24,9 @@ export function Nav() {
   const go = (id: SectionId) => {
     setOpen(false);
 
-    // Wait for the mobile menu to collapse, then scroll with explicit nav offset.
+    // Let mobile menu collapse before calculating section position.
     requestAnimationFrame(() => {
-      const target = document.getElementById(id);
-      const nav = document.querySelector(
-        'nav[data-site-nav="true"]',
-      ) as HTMLElement | null;
-      if (!target) return;
-
-      const navHeight = nav?.offsetHeight ?? 64;
-      const top =
-        target.getBoundingClientRect().top + window.scrollY - navHeight - 8;
-
-      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+      scrollToSection(id);
     });
   };
 

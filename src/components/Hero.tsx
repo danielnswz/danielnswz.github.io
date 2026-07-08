@@ -1,10 +1,20 @@
-import { profile, currentlyAt, roleConstellation } from '@/data/content'
-import { PillLink } from './PillLink'
-import { GitHubIcon, LinkedInIcon, MailIcon, MapPinIcon, ClockIcon, DownloadIcon, ArrowRightIcon } from './icons'
-import { analytics } from '@/lib/analytics'
+import { profile, currentlyAt, roleConstellation } from "@/data/content";
+import { PillLink } from "./PillLink";
+import {
+  GitHubIcon,
+  LinkedInIcon,
+  MailIcon,
+  MapPinIcon,
+  ClockIcon,
+  DownloadIcon,
+  ArrowRightIcon,
+} from "./icons";
+import { analytics } from "@/lib/analytics";
+import { scrollToSection } from "@/lib/scroll";
 
-const handleResumeHeroClick = () => analytics.resumeDownload('hero')
-const handleSocialClick = (target: 'github' | 'linkedin' | 'email') => analytics.socialClick(target)
+const handleResumeHeroClick = () => analytics.resumeDownload("hero");
+const handleSocialClick = (target: "github" | "linkedin" | "email") =>
+  analytics.socialClick(target);
 
 export function Hero() {
   return (
@@ -21,8 +31,10 @@ export function Hero() {
             </span>
 
             <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              {profile.first}{' '}
-              <span className="text-accent-dark dark:text-accent">{profile.last}</span>
+              {profile.first}{" "}
+              <span className="text-accent-dark dark:text-accent">
+                {profile.last}
+              </span>
             </h1>
 
             <p className="mt-4 text-lg font-medium text-ink/80 dark:text-light/80">
@@ -41,7 +53,14 @@ export function Hero() {
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <a href="#projects" className="btn-primary">
+              <a
+                href="#projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("projects");
+                }}
+                className="btn-primary"
+              >
                 View Projects
                 <ArrowRightIcon width={16} height={16} />
               </a>
@@ -55,7 +74,14 @@ export function Hero() {
                 <DownloadIcon width={16} height={16} />
                 Resume
               </a>
-              <a href="#contact" className="btn-ghost">
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("contact");
+                }}
+                className="btn-ghost"
+              >
                 Get in Touch
               </a>
             </div>
@@ -65,9 +91,24 @@ export function Hero() {
                 Connect
               </p>
               <div className="flex items-center gap-3">
-                <SocialLink href={profile.github} label="GitHub" icon={<GitHubIcon width={18} height={18} />} onClick={() => handleSocialClick('github')} />
-                <SocialLink href={profile.linkedin} label="LinkedIn" icon={<LinkedInIcon width={18} height={18} />} onClick={() => handleSocialClick('linkedin')} />
-                <SocialLink href={`mailto:${profile.email}`} label="Email" icon={<MailIcon width={18} height={18} />} onClick={() => handleSocialClick('email')} />
+                <SocialLink
+                  href={profile.github}
+                  label="GitHub"
+                  icon={<GitHubIcon width={18} height={18} />}
+                  onClick={() => handleSocialClick("github")}
+                />
+                <SocialLink
+                  href={profile.linkedin}
+                  label="LinkedIn"
+                  icon={<LinkedInIcon width={18} height={18} />}
+                  onClick={() => handleSocialClick("linkedin")}
+                />
+                <SocialLink
+                  href={`mailto:${profile.email}`}
+                  label="Email"
+                  icon={<MailIcon width={18} height={18} />}
+                  onClick={() => handleSocialClick("email")}
+                />
               </div>
             </div>
           </div>
@@ -110,7 +151,7 @@ export function Hero() {
                 <span className="inline-flex items-center gap-1.5 text-sm text-ink/60 dark:text-light/60">
                   <MapPinIcon width={14} height={14} />
                   {profile.location}
-                  <span className="ml-1">{'🇦🇷'}</span>
+                  <span className="ml-1">{"🇦🇷"}</span>
                 </span>
                 <span className="inline-flex items-center gap-1.5 text-sm text-ink/60 dark:text-light/60">
                   <ClockIcon width={14} height={14} />
@@ -122,17 +163,41 @@ export function Hero() {
         </div>
 
         <div className="mt-12 flex flex-col items-center gap-2 text-ink/40 dark:text-light/40">
-          <span className="text-xs font-mono uppercase tracking-widest">Scroll</span>
-          <svg width="16" height="22" viewBox="0 0 16 22" fill="none" stroke="currentColor" strokeWidth="1.5" className="animate-scroll-cue">
-            <path d="M8 1v18M2 13l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+          <span className="text-xs font-mono uppercase tracking-widest">
+            Scroll
+          </span>
+          <svg
+            width="16"
+            height="22"
+            viewBox="0 0 16 22"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            className="animate-scroll-cue"
+          >
+            <path
+              d="M8 1v18M2 13l6 6 6-6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-function SocialLink({ href, label, icon, onClick }: { href: string; label: string; icon: React.ReactNode; onClick?: () => void }) {
+function SocialLink({
+  href,
+  label,
+  icon,
+  onClick,
+}: {
+  href: string;
+  label: string;
+  icon: React.ReactNode;
+  onClick?: () => void;
+}) {
   return (
     <a
       href={href}
@@ -144,5 +209,5 @@ function SocialLink({ href, label, icon, onClick }: { href: string; label: strin
     >
       {icon}
     </a>
-  )
+  );
 }
