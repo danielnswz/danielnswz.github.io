@@ -76,18 +76,34 @@ export function Hero() {
             <div
               tabIndex={0}
               aria-label="Hover or focus to see roles"
-              className="group grid justify-items-center gap-4 focus:outline-none"
+              className="group relative grid justify-items-center gap-4 focus:outline-none"
             >
               <div className="relative">
-                <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-accent/40 via-accent/10 to-transparent blur-2xl" />
+                <div className="absolute inset-0 -z-10 rounded-full bg-accent/15 blur-2xl scale-125" />
                 <img
                   src="/avatar.png"
                   alt={`${profile.name} — Software Engineer`}
-                  width={176}
-                  height={176}
+                  width={224}
+                  height={224}
                   loading="eager"
-                  className="h-44 w-44 rounded-full border border-light-border object-cover transition-transform duration-200 group-hover:scale-95 group-focus-visible:scale-95 dark:border-ink-border"
+                  className="h-56 w-56 rounded-full border border-light-border object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03] group-focus-visible:scale-[1.03] dark:border-ink-border"
                 />
+
+                <div
+                  className="absolute inset-x-0 top-full mt-4 flex flex-col items-center gap-2 pointer-events-none"
+                  aria-hidden="true"
+                >
+                  {roleConstellation.map((role, i) => (
+                    <span
+                      key={role}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-light-border bg-light-card/95 px-2.5 py-1 text-[11px] font-medium text-ink/70 shadow-sm backdrop-blur opacity-0 scale-90 transition-all duration-300 ease-out dark:border-ink-border dark:bg-ink-card/95 dark:text-light/70 group-hover:opacity-100 group-hover:scale-100 group-focus-visible:opacity-100 group-focus-visible:scale-100"
+                      style={{ transitionDelay: `${i * 100}ms` }}
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent-dark dark:bg-accent" />
+                      {role}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               <div className="flex flex-col items-center gap-1.5 text-center">
@@ -100,23 +116,6 @@ export function Hero() {
                   <ClockIcon width={14} height={14} />
                   {profile.timezone}
                 </span>
-              </div>
-
-              <div
-                className="grid w-full max-w-xs grid-cols-2 gap-2 opacity-0 translate-y-1 pointer-events-none transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-visible:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:pointer-events-auto"
-                aria-hidden="false"
-              >
-                {roleConstellation.map((role) => (
-                  <div
-                    key={role}
-                    className="card flex items-center gap-2.5 px-3 py-2.5"
-                  >
-                    <span className="h-2 w-2 rounded-full bg-accent-dark dark:bg-accent" aria-hidden />
-                    <span className="text-xs font-medium text-ink/70 dark:text-light/70">
-                      {role}
-                    </span>
-                  </div>
-                ))}
               </div>
             </div>
           </div>

@@ -1,27 +1,27 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
-type Theme = 'dark' | 'light'
+type Theme = "dark" | "light";
 
-const STORAGE_KEY = 'dk-theme'
+const STORAGE_KEY = "dk-theme";
 
 function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'light'
-  const stored = window.localStorage.getItem(STORAGE_KEY)
-  if (stored === 'dark' || stored === 'light') return stored
-  return 'light'
+  if (typeof window === "undefined") return "dark";
+  const stored = window.localStorage.getItem(STORAGE_KEY);
+  if (stored === "dark" || stored === "light") return stored;
+  return "dark";
 }
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme)
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
-    const root = document.documentElement
-    root.classList.toggle('dark', theme === 'dark')
-    root.style.colorScheme = theme
-    window.localStorage.setItem(STORAGE_KEY, theme)
-  }, [theme])
+    const root = document.documentElement;
+    root.classList.toggle("dark", theme === "dark");
+    root.style.colorScheme = theme;
+    window.localStorage.setItem(STORAGE_KEY, theme);
+  }, [theme]);
 
-  const toggle = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
+  const toggle = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
 
-  return { theme, toggle, setTheme }
+  return { theme, toggle, setTheme };
 }
