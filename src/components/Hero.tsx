@@ -20,6 +20,7 @@ export function Hero() {
   const handleAvatarError: React.ReactEventHandler<HTMLImageElement> = (
     event,
   ) => {
+    event.currentTarget.srcset = "";
     event.currentTarget.src = "/avatar.png";
   };
 
@@ -135,18 +136,26 @@ export function Hero() {
                 </div>
 
                 <div className="absolute inset-0 z-10 rounded-full bg-accent/15 blur-2xl scale-125" />
-                <img
-                  src="/avatar.jpg"
-                  alt={`${profile.name} — Software Engineer`}
-                  width={288}
-                  height={320}
-                  sizes="(max-width: 767px) 288px, 288px"
-                  loading="eager"
-                  {...({ fetchpriority: "high" } as Record<string, string>)}
-                  decoding="async"
-                  onError={handleAvatarError}
-                  className="relative z-20 h-80 w-72 rounded-3xl border border-light-border object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03] group-focus-visible:scale-[1.03] dark:border-ink-border"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/avatar-320.webp 320w, /avatar-640.webp 640w"
+                    sizes="(max-width: 767px) 72vw, 288px"
+                  />
+                  <img
+                    src="/avatar-320.jpg"
+                    srcSet="/avatar-320.jpg 320w, /avatar-640.jpg 640w"
+                    alt={`${profile.name} — Software Engineer`}
+                    width={288}
+                    height={320}
+                    sizes="(max-width: 767px) 72vw, 288px"
+                    loading="eager"
+                    {...({ fetchpriority: "high" } as Record<string, string>)}
+                    decoding="async"
+                    onError={handleAvatarError}
+                    className="relative z-20 h-80 w-72 rounded-3xl border border-light-border object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03] group-focus-visible:scale-[1.03] dark:border-ink-border"
+                  />
+                </picture>
 
                 <div
                   className="pointer-events-none absolute inset-0 z-30"
