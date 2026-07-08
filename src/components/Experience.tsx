@@ -1,6 +1,11 @@
 import { experience } from '@/data/content'
 import { ChevronDownIcon } from './icons'
 import { SectionHeader } from './SectionHeader'
+import { analytics } from '@/lib/analytics'
+
+function handleToggle(expanded: boolean, company: string) {
+  if (expanded) analytics.experienceExpand(company)
+}
 
 export function Experience() {
   return (
@@ -12,7 +17,10 @@ export function Experience() {
           {experience.map((job, i) => (
             <article key={i} className="relative">
               <span className="absolute -left-[1.45rem] top-1.5 h-3 w-3 rounded-full border-2 border-accent bg-light-card dark:bg-ink-card" aria-hidden />
-              <details className="card group open:bg-light-soft open:dark:bg-ink-soft/40 p-5 md:p-6">
+              <details
+                className="card group open:bg-light-soft open:dark:bg-ink-soft/40 p-5 md:p-6"
+                onToggle={(e) => handleToggle((e.currentTarget as HTMLDetailsElement).open, job.company)}
+              >
                 <summary className="flex cursor-pointer flex-col gap-3 md:flex-row md:items-start md:justify-between marker:content-none list-none">
                   <div className="grid gap-1">
                     <h3 className="text-base font-semibold">{job.role}</h3>

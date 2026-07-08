@@ -1,6 +1,10 @@
 import { profile, currentlyAt, roleConstellation } from '@/data/content'
 import { PillLink } from './PillLink'
 import { GitHubIcon, LinkedInIcon, MailIcon, MapPinIcon, ClockIcon, DownloadIcon, ArrowRightIcon } from './icons'
+import { analytics } from '@/lib/analytics'
+
+const handleResumeHeroClick = () => analytics.resumeDownload('hero')
+const handleSocialClick = (target: 'github' | 'linkedin' | 'email') => analytics.socialClick(target)
 
 export function Hero() {
   return (
@@ -45,6 +49,7 @@ export function Hero() {
                 href={profile.resumeUrl}
                 target="_blank"
                 rel="noreferrer"
+                onClick={handleResumeHeroClick}
                 className="btn-ghost"
               >
                 <DownloadIcon width={16} height={16} />
@@ -60,9 +65,9 @@ export function Hero() {
                 Connect
               </p>
               <div className="flex items-center gap-3">
-                <SocialLink href={profile.github} label="GitHub" icon={<GitHubIcon width={18} height={18} />} />
-                <SocialLink href={profile.linkedin} label="LinkedIn" icon={<LinkedInIcon width={18} height={18} />} />
-                <SocialLink href={`mailto:${profile.email}`} label="Email" icon={<MailIcon width={18} height={18} />} />
+                <SocialLink href={profile.github} label="GitHub" icon={<GitHubIcon width={18} height={18} />} onClick={() => handleSocialClick('github')} />
+                <SocialLink href={profile.linkedin} label="LinkedIn" icon={<LinkedInIcon width={18} height={18} />} onClick={() => handleSocialClick('linkedin')} />
+                <SocialLink href={`mailto:${profile.email}`} label="Email" icon={<MailIcon width={18} height={18} />} onClick={() => handleSocialClick('email')} />
               </div>
             </div>
           </div>
@@ -128,13 +133,14 @@ export function Hero() {
   )
 }
 
-function SocialLink({ href, label, icon }: { href: string; label: string; icon: React.ReactNode }) {
+function SocialLink({ href, label, icon, onClick }: { href: string; label: string; icon: React.ReactNode; onClick?: () => void }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noreferrer"
       aria-label={label}
+      onClick={onClick}
       className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-light-border text-ink/70 transition-colors hover:bg-light-soft hover:text-ink dark:border-ink-border dark:text-light/70 dark:hover:bg-ink-soft dark:hover:text-light"
     >
       {icon}

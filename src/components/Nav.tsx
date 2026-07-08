@@ -4,6 +4,9 @@ import type { SectionId } from '@/data/content'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { ThemeToggle } from './ThemeToggle'
 import { DownloadIcon } from './icons'
+import { analytics } from '@/lib/analytics'
+
+const handleResumeClick = () => analytics.resumeDownload('nav')
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -65,6 +68,7 @@ export function Nav() {
             href={profile.resumeUrl}
             target="_blank"
             rel="noreferrer"
+            onClick={handleResumeClick}
             className="btn-ghost hidden sm:inline-flex"
           >
             <DownloadIcon width={16} height={16} />

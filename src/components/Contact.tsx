@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { profile } from '@/data/content'
 import { MailIcon, GitHubIcon, LinkedInIcon, SendIcon } from './icons'
 import { SectionHeader } from './SectionHeader'
-import { trackEvent } from '@/lib/analytics'
+import { analytics } from '@/lib/analytics'
 
 export function Contact() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
@@ -19,10 +19,7 @@ export function Contact() {
     window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(
       subject || 'Hello from your portfolio',
     )}&body=${body}`
-    trackEvent('contact_submit', {
-      subject: subject || '(no subject)',
-      has_message: String(message.length > 0),
-    })
+    analytics.contactSubmit(subject || '(no subject)', message.length > 0)
     setStatus('sent')
     form.reset()
     setTimeout(() => setStatus('idle'), 4000)
@@ -47,18 +44,21 @@ export function Contact() {
               icon={<MailIcon width={18} height={18} />}
               label="Email"
               value={profile.email}
+              onClick={() => analytics.socialClick('email')}
             />
             <ContactLink
               href={profile.linkedin}
               icon={<LinkedInIcon width={18} height={18} />}
               label="LinkedIn"
               value={profile.linkedinHandle}
+              onClick={() => analytics.socialClick('linkedin')}
             />
             <ContactLink
               href={profile.github}
               icon={<GitHubIcon width={18} height={18} />}
               label="GitHub"
               value={profile.githubHandle}
+              onClick={() => analytics.socialClick('github')}
             />
 
             <div className="card mt-2 p-5">
@@ -121,17 +121,20 @@ function ContactLink({
   icon,
   label,
   value,
+  onClick,
 }: {
   href: string
   icon: React.ReactNode
   label: string
   value: string
+  onClick?: () => void
 }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noreferrer"
+      onClick={onClick}
       className="card flex items-center gap-3 p-4 transition-colors hover:border-accent/60"
     >
       <span className="flex h-10 w-10 items-center justify-center rounded-md bg-accent/15 text-accent-dark dark:text-accent">

@@ -2,6 +2,15 @@ import { projects } from '@/data/content'
 import type { ProjectStatus } from '@/data/content'
 import { ChevronDownIcon, ArrowRightIcon } from './icons'
 import { SectionHeader } from './SectionHeader'
+import { analytics } from '@/lib/analytics'
+
+function handleToggle(expanded: boolean, name: string) {
+  if (expanded) analytics.projectExpand(name)
+}
+
+function handleVisitClick(name: string) {
+  analytics.projectVisit(name)
+}
 
 const statusStyle: Record<ProjectStatus, string> = {
   Live: 'text-emerald-500',
@@ -23,7 +32,11 @@ export function Projects() {
             const visible = p.stack.slice(0, MAX_STACK_VISIBLE)
             const extra = p.stack.length - visible.length
             return (
-              <details key={p.name} className="card group open:bg-light-soft open:dark:bg-ink-soft/40 p-5">
+              <details
+                key={p.name}
+                className="card group open:bg-light-soft open:dark:bg-ink-soft/40 p-5"
+                onToggle={(e) => handleToggle((e.currentTarget as HTMLDetailsElement).open, p.name)}
+              >
                 <summary className="cursor-pointer list-none marker:content-none">
                   <div className="flex items-start justify-between gap-3">
                     <div className="grid gap-1.5">
@@ -70,6 +83,7 @@ export function Projects() {
                       href={p.url}
                       target="_blank"
                       rel="noreferrer"
+                      onClick={() => handleVisitClick(p.name)}
                       className="link-quiet inline-flex items-center gap-1 pt-1 text-sm font-medium"
                     >
                       Visit
