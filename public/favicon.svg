@@ -1,3 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <image href="/avatar.png" x="0" y="0" width="64" height="64" preserveAspectRatio="xMidYMid slice" clip-path="circle(32px at 32px 32px)" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="DK favicon">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f172a" />
+      <stop offset="1" stop-color="#0b3b5a" />
+    </linearGradient>
+    <linearGradient id="ring" x1="12" y1="14" x2="52" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#38bdf8" />
+      <stop offset="1" stop-color="#10b981" />
+    </linearGradient>
+  </defs>
+
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#bg)" />
+  <path d="M12 36c3-9 10-14 20-14 7 0 13 2 18 7" fill="none" stroke="url(#ring)" stroke-width="3" stroke-linecap="round" opacity="0.95" />
+  <circle cx="52" cy="30" r="2.5" fill="#67e8f9" />
+
+  <g fill="#f8fafc">
+    <rect x="14" y="16" width="5" height="32" rx="1" />
+    <rect x="19" y="16" width="9" height="5" rx="1" />
+    <rect x="19" y="43" width="9" height="5" rx="1" />
+    <rect x="27" y="21" width="5" height="22" rx="1" />
+
+    <rect x="39" y="16" width="5" height="32" rx="1" />
+    <polygon points="44,31 53,16 57,16 48,33" />
+    <polygon points="44,33 48,31 57,48 53,48" />
+  </g>
 </svg>
