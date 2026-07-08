@@ -313,7 +313,10 @@ export function MeshBackground() {
     return () => {
       isDisposed = true;
       window.removeEventListener("mousemove", onMove);
-      reducedMotionQuery.removeEventListener("change", onMotionPreferenceChange);
+      reducedMotionQuery.removeEventListener(
+        "change",
+        onMotionPreferenceChange,
+      );
       cancelAnimationFrame(raf);
     };
   }, []);

@@ -17,7 +17,9 @@ const handleSocialClick = (target: "github" | "linkedin" | "email") =>
   analytics.socialClick(target);
 
 export function Hero() {
-  const handleAvatarError: React.ReactEventHandler<HTMLImageElement> = (event) => {
+  const handleAvatarError: React.ReactEventHandler<HTMLImageElement> = (
+    event,
+  ) => {
     event.currentTarget.src = "/avatar.png";
   };
 
@@ -140,7 +142,7 @@ export function Hero() {
                   height={320}
                   sizes="(max-width: 767px) 288px, 288px"
                   loading="eager"
-                  fetchPriority="high"
+                  fetchpriority="high"
                   decoding="async"
                   onError={handleAvatarError}
                   className="relative z-20 h-80 w-72 rounded-3xl border border-light-border object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03] group-focus-visible:scale-[1.03] dark:border-ink-border"
