@@ -91,8 +91,8 @@ export const previouslyAt: CompanyMention[] = [
 export const profileConstellation = [
   "Software Engineer",
   "Full-Stack",
-  "Backend focused",
-  "System Designer",
+  "Backend-First",
+  "LLM API Integrations",
 ] as const;
 
 export const heroNarrative = [
