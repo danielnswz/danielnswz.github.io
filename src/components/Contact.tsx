@@ -91,7 +91,7 @@ export function Contact() {
                 required
                 rows={5}
                 placeholder="Tell me about the opportunity or project..."
-                className="w-full resize-y rounded-lg border border-light-border bg-light-card px-3 py-2.5 text-sm text-ink placeholder:text-ink/40 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-light dark:border-ink-border dark:bg-ink-card dark:text-light dark:placeholder:text-light/40 dark:focus-visible:ring-offset-ink"
+                className="w-full resize-y rounded-lg border border-light-border bg-light-card px-3 py-2.5 text-sm text-ink placeholder:text-ink/60 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-light dark:border-ink-border dark:bg-ink-card dark:text-light dark:placeholder:text-light/60 dark:focus-visible:ring-offset-ink"
               />
             </div>
             <button
@@ -102,7 +102,7 @@ export function Contact() {
               <SendIcon width={16} height={16} />
               {status === 'sent' ? 'Opening mail…' : 'Send Message'}
             </button>
-            <p className="text-xs text-ink/50 dark:text-light/50">
+            <p className="text-xs text-ink/65 dark:text-light/65">
               Opens your email client pre-filled. For direct contact, email me at{' '}
               <a href={`mailto:${profile.email}`} className="link-quiet">
                 {profile.email}
@@ -141,7 +141,7 @@ function ContactLink({
         {icon}
       </span>
       <div className="grid">
-        <p className="text-xs text-ink/50 dark:text-light/50">{label}</p>
+        <p className="text-xs text-ink/65 dark:text-light/65">{label}</p>
         <p className="text-sm font-medium link-quiet break-all">{value}</p>
       </div>
     </a>
@@ -176,7 +176,7 @@ function Field({
         required={required}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className="w-full rounded-lg border border-light-border bg-light-card px-3 py-2.5 text-sm text-ink placeholder:text-ink/40 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-light dark:border-ink-border dark:bg-ink-card dark:text-light dark:placeholder:text-light/40 dark:focus-visible:ring-offset-ink"
+        className="w-full rounded-lg border border-light-border bg-light-card px-3 py-2.5 text-sm text-ink placeholder:text-ink/60 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-light dark:border-ink-border dark:bg-ink-card dark:text-light dark:placeholder:text-light/60 dark:focus-visible:ring-offset-ink"
       />
     </div>
   )

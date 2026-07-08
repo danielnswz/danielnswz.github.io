@@ -39,7 +39,7 @@ export function Experience() {
                     <p className="text-sm text-accent-dark dark:text-accent">
                       {job.company}
                     </p>
-                    <p className="text-xs text-ink/50 dark:text-light/50">
+                    <p className="text-xs text-ink/65 dark:text-light/65">
                       <span>{job.type}</span> · <span>{job.period}</span> ·{" "}
                       <span>{job.location}</span>
                     </p>
@@ -47,7 +47,7 @@ export function Experience() {
                   <ChevronDownIcon
                     width={18}
                     height={18}
-                    className="shrink-0 text-ink/40 transition-transform group-open:rotate-180 dark:text-light/40"
+                    className="shrink-0 text-ink/60 transition-transform group-open:rotate-180 dark:text-light/60"
                   />
                 </summary>
 

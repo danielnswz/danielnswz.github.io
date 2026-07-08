@@ -48,7 +48,7 @@ export function Hero() {
             </p>
 
             <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm text-ink/60 dark:text-light/60">
-              <span className="font-mono text-xs uppercase tracking-widest text-ink/55 dark:text-light/55">
+              <span className="font-mono text-xs uppercase tracking-widest text-ink/65 dark:text-light/65">
                 Currently
               </span>
               <PillLink mention={currentlyAt} />
@@ -93,7 +93,7 @@ export function Hero() {
             </div>
 
             <div className="mt-7">
-              <p className="mb-3 text-xs font-mono uppercase tracking-widest text-ink/55 dark:text-light/55">
+              <p className="mb-3 text-xs font-mono uppercase tracking-widest text-ink/65 dark:text-light/65">
                 Connect
               </p>
               <div className="flex items-center gap-3">
@@ -191,7 +191,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-2 text-ink/55 dark:text-light/55">
+        <div className="mt-12 flex flex-col items-center gap-2 text-ink/65 dark:text-light/65">
           <span className="text-xs font-mono uppercase tracking-widest">
             Scroll
           </span>

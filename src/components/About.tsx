@@ -26,7 +26,7 @@ export function About() {
                   {s.big}
                 </p>
                 <p className="mt-2 text-sm font-medium">{s.title}</p>
-                <p className="mt-1 text-xs text-ink/50 dark:text-light/50">{s.sub}</p>
+                <p className="mt-1 text-xs text-ink/65 dark:text-light/65">{s.sub}</p>
               </div>
             ))}
           </div>

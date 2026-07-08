@@ -32,14 +32,14 @@ export function Qualifications() {
                     <p className="text-xs text-ink/60 dark:text-light/60">
                       {q.issuer}
                     </p>
-                    <p className="text-xs text-ink/40 dark:text-light/40">
+                    <p className="text-xs text-ink/65 dark:text-light/65">
                       {q.period}
                     </p>
                   </div>
                   <ChevronDownIcon
                     width={18}
                     height={18}
-                    className="shrink-0 text-ink/40 transition-transform group-open:rotate-180 dark:text-light/40"
+                    className="shrink-0 text-ink/60 transition-transform group-open:rotate-180 dark:text-light/60"
                   />
                 </summary>
                 <ul className="accordion-panel mt-4 grid gap-2 pl-13 text-sm text-ink/70 dark:text-light/70">
@@ -58,7 +58,7 @@ export function Qualifications() {
           })}
         </div>
 
-        <div className="mt-6 flex items-center gap-2 text-xs text-ink/40 dark:text-light/40">
+        <div className="mt-6 flex items-center gap-2 text-xs text-ink/65 dark:text-light/65">
           <span className="font-mono">Español</span>·
           <span className="font-mono">English (Full Professional)</span>
         </div>

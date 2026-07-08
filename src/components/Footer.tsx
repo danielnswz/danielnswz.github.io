@@ -9,14 +9,14 @@ export function Footer() {
   return (
     <footer className="border-t border-light-border dark:border-ink-border">
       <div className="border-b border-light-border dark:border-ink-border">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 py-3 text-xs text-ink/60 dark:text-light/60">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-2 gap-y-1 px-4 py-3 text-xs text-ink/65 dark:text-light/65">
           <span className="font-mono">Built with</span>
-          <span className="text-ink/45 dark:text-light/45">·</span>
+          <span className="text-ink/60 dark:text-light/60">·</span>
           {builtWith.map((tech, i) => (
             <span key={tech} className="inline-flex items-center gap-2">
               <span className="font-mono">{tech}</span>
               {i < builtWith.length - 1 && (
-                <span className="text-ink/40 dark:text-light/40">·</span>
+                <span className="text-ink/55 dark:text-light/55">·</span>
               )}
             </span>
           ))}
@@ -100,7 +100,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-light-border dark:border-ink-border">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-5 flex flex-col items-center justify-between gap-2 text-xs text-ink/60 dark:text-light/60 sm:flex-row">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-5 flex flex-col items-center justify-between gap-2 text-xs text-ink/65 dark:text-light/65 sm:flex-row">
           <p>
             © {new Date().getFullYear()} {profile.name}. All rights reserved.
           </p>
