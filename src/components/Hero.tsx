@@ -1,4 +1,4 @@
-import { profile, currentlyAt, roleConstellation } from "@/data/content";
+import { profile, currentlyAt, profileConstellation } from "@/data/content";
 import { PillLink } from "./PillLink";
 import {
   GitHubIcon,
@@ -119,31 +119,50 @@ export function Hero() {
               aria-label="Hover or focus to see roles"
               className="group relative grid justify-items-center gap-4 focus:outline-none"
             >
-              <div className="relative">
-                <div className="absolute inset-0 -z-10 rounded-full bg-accent/15 blur-2xl scale-125" />
+              <div className="relative isolate">
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -inset-6 z-0"
+                >
+                  <div className="avatar-orbit-ring absolute inset-0 rounded-[2rem]" />
+                  <div className="avatar-aurora absolute -inset-5 rounded-[2.4rem]" />
+                </div>
+
+                <div className="absolute inset-0 z-10 rounded-full bg-accent/15 blur-2xl scale-125" />
                 <img
                   src="/avatar.png"
                   alt={`${profile.name} — Software Engineer`}
                   width={224}
                   height={224}
                   loading="eager"
-                  className="h-56 w-56 rounded-full border border-light-border object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03] group-focus-visible:scale-[1.03] dark:border-ink-border"
+                  className="relative z-20 h-80 w-72 rounded-3xl border border-light-border object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03] group-focus-visible:scale-[1.03] dark:border-ink-border"
                 />
 
                 <div
-                  className="absolute inset-x-0 top-full mt-4 flex flex-col items-center gap-2 pointer-events-none"
+                  className="pointer-events-none absolute inset-0 z-30"
                   aria-hidden="true"
                 >
-                  {roleConstellation.map((role, i) => (
-                    <span
-                      key={role}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-light-border bg-light-card/95 px-2.5 py-1 text-[11px] font-medium text-ink/70 shadow-sm backdrop-blur opacity-0 scale-90 transition-all duration-300 ease-out dark:border-ink-border dark:bg-ink-card/95 dark:text-light/70 group-hover:opacity-100 group-hover:scale-100 group-focus-visible:opacity-100 group-focus-visible:scale-100"
-                      style={{ transitionDelay: `${i * 100}ms` }}
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-accent-dark dark:bg-accent" />
-                      {role}
-                    </span>
-                  ))}
+                  {profileConstellation.slice(0, 4).map((role, i) => {
+                    const cornerClass =
+                      i === 0
+                        ? "-top-7 -left-8 md:-top-8 md:-left-10"
+                        : i === 1
+                          ? "-top-7 -right-8 md:-top-8 md:-right-10"
+                          : i === 2
+                            ? "-bottom-7 -left-8 md:-bottom-8 md:-left-10"
+                            : "-bottom-7 -right-8 md:-bottom-8 md:-right-10";
+
+                    return (
+                      <span
+                        key={role}
+                        className={`absolute ${cornerClass} inline-flex whitespace-nowrap items-center gap-1.5 rounded-full border border-light-border bg-light-card/95 px-2.5 py-1 text-[10px] font-medium text-ink/70 shadow-sm backdrop-blur opacity-0 scale-90 transition-all duration-300 ease-out dark:border-ink-border dark:bg-ink-card/95 dark:text-light/70 sm:text-[11px] group-hover:opacity-100 group-hover:scale-100 group-focus-visible:opacity-100 group-focus-visible:scale-100`}
+                        style={{ transitionDelay: `${i * 90}ms` }}
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-accent-dark dark:bg-accent" />
+                        {role}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
 

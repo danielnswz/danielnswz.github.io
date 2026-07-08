@@ -6,6 +6,7 @@
   :root {
     color-scheme: light;
     --mesh-alpha: 0.40;
+    interpolate-size: allow-keywords;
   }
   html.dark {
     color-scheme: dark;
@@ -71,6 +72,168 @@
 }
 
 @layer components {
+  @supports selector(details::details-content) {
+    .accordion::details-content {
+      block-size: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition:
+        block-size 420ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 320ms ease,
+        content-visibility 420ms allow-discrete;
+      transition-behavior: allow-discrete;
+    }
+
+    .accordion[open]::details-content {
+      block-size: auto;
+      opacity: 1;
+    }
+
+    .accordion .accordion-panel {
+      transform: translateY(-4px);
+      transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .accordion[open] .accordion-panel {
+      transform: translateY(0);
+    }
+  }
+
+  .mesh-overlay {
+    opacity: 0.58;
+  }
+
+  .mesh-vignette {
+    background:
+      radial-gradient(circle at 50% 50%, transparent 45%, rgba(250, 250, 250, 0.45) 100%),
+      linear-gradient(to bottom, rgba(250, 250, 250, 0.12), rgba(250, 250, 250, 0.22));
+  }
+
+  html.dark .mesh-overlay {
+    opacity: 0.68;
+  }
+
+  html.dark .mesh-vignette {
+    background:
+      radial-gradient(circle at 50% 50%, transparent 45%, rgba(10, 10, 11, 0.48) 100%),
+      linear-gradient(to bottom, rgba(10, 10, 11, 0.05), rgba(10, 10, 11, 0.22));
+  }
+
+  @keyframes avatar-star-drift {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 110px -110px;
+    }
+  }
+
+  @keyframes avatar-star-glow {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.18));
+      opacity: 0.52;
+    }
+    50% {
+      filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.3));
+      opacity: 0.85;
+    }
+  }
+
+  @keyframes avatar-aurora-pulse {
+    0%,
+    100% {
+      opacity: 0.34;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.58;
+      transform: scale(1.03);
+    }
+  }
+
+  .avatar-orbit-ring {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.12), transparent 46%),
+      radial-gradient(circle at 76% 72%, rgba(16, 185, 129, 0.1), transparent 44%),
+      linear-gradient(145deg, rgba(7, 16, 34, 0.26), rgba(7, 16, 34, 0));
+    animation: avatar-star-glow 5.4s ease-in-out infinite;
+    opacity: 0.8;
+  }
+
+  .avatar-orbit-ring::before {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    background-image:
+      radial-gradient(circle, rgba(125, 211, 252, 0.92) 0 1px, transparent 1.2px),
+      radial-gradient(circle, rgba(103, 232, 249, 0.85) 0 1.2px, transparent 1.4px),
+      radial-gradient(circle, rgba(167, 243, 208, 0.7) 0 0.9px, transparent 1.1px);
+    background-size: 38px 38px, 54px 54px, 72px 72px;
+    background-position: 0 0, 18px 10px, 9px 28px;
+    animation: avatar-star-drift 6.8s linear infinite;
+    opacity: 0.62;
+  }
+
+  .avatar-orbit-ring::after {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background-image:
+      radial-gradient(circle, rgba(165, 243, 252, 0.35) 0 1px, transparent 1.2px),
+      radial-gradient(circle, rgba(186, 230, 253, 0.28) 0 1.1px, transparent 1.3px);
+    background-size: 92px 92px, 120px 120px;
+    background-position: 26px 42px, 8px 14px;
+    animation: avatar-star-drift 10s linear infinite reverse;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .avatar-aurora {
+    background:
+      radial-gradient(circle at 22% 24%, rgba(56, 189, 248, 0.24) 0%, transparent 48%),
+      radial-gradient(circle at 78% 72%, rgba(16, 185, 129, 0.2) 0%, transparent 44%);
+    filter: blur(16px);
+    animation: avatar-aurora-pulse 5.2s ease-in-out infinite;
+  }
+
+  html.dark .avatar-orbit-ring {
+    background:
+      radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.2), transparent 48%),
+      radial-gradient(circle at 76% 72%, rgba(16, 185, 129, 0.16), transparent 46%),
+      linear-gradient(145deg, rgba(5, 10, 24, 0.54), rgba(5, 10, 24, 0));
+    opacity: 0.95;
+  }
+
+  html.dark .avatar-orbit-ring::before {
+    opacity: 0.78;
+  }
+
+  html.dark .avatar-aurora {
+    background:
+      radial-gradient(circle at 22% 24%, rgba(56, 189, 248, 0.34) 0%, transparent 52%),
+      radial-gradient(circle at 78% 72%, rgba(16, 185, 129, 0.28) 0%, transparent 46%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .accordion::details-content,
+    .accordion .accordion-panel {
+      transition: none !important;
+      transform: none !important;
+    }
+
+    .avatar-orbit-ring,
+    .avatar-aurora {
+      animation: none !important;
+    }
+
+    .avatar-orbit-ring::before {
+      animation: none !important;
+    }
+  }
+
   .section-anchor {
     @apply scroll-mt-24;
   }
