@@ -1,16 +1,27 @@
 import { useEffect, useRef } from "react";
 
-const GRID_SPACING_A = 34;
-const GRID_SPACING_B = 52;
-const SAMPLE_STEP = 24;
-const GRAVITY_RADIUS = 280;
-const GRAVITY_STRENGTH = 20;
+const ACTIVE_RENDER_MS = 1400;
 
-function warpPoint(px: number, py: number, mx: number, my: number) {
+type MeshQuality = {
+  spacingA: number;
+  spacingB: number;
+  sampleStep: number;
+  gravityRadius: number;
+  gravityStrength: number;
+};
+
+function warpPoint(
+  px: number,
+  py: number,
+  mx: number,
+  my: number,
+  gravityRadius: number,
+  gravityStrength: number,
+) {
   const dx = mx - px;
   const dy = my - py;
   const distSq = dx * dx + dy * dy;
-  const radiusSq = GRAVITY_RADIUS * GRAVITY_RADIUS;
+  const radiusSq = gravityRadius * gravityRadius;
 
   if (distSq > radiusSq) {
     return { x: px, y: py };
@@ -18,7 +29,7 @@ function warpPoint(px: number, py: number, mx: number, my: number) {
 
   const dist = Math.sqrt(distSq) || 1;
   const falloff = 1 - distSq / radiusSq;
-  const pull = GRAVITY_STRENGTH * falloff * falloff;
+  const pull = gravityStrength * falloff * falloff;
 
   return {
     x: px + (dx / dist) * pull,
@@ -31,9 +42,12 @@ function drawDeformedDiagonalSet(
   width: number,
   height: number,
   spacing: number,
+  sampleStep: number,
   slope: 1 | -1,
   mx: number,
   my: number,
+  gravityRadius: number,
+  gravityStrength: number,
 ) {
   const margin = Math.max(width, height) * 0.3;
 
@@ -42,9 +56,9 @@ function drawDeformedDiagonalSet(
       ctx.beginPath();
       let moved = false;
 
-      for (let x = -margin; x <= width + margin; x += SAMPLE_STEP) {
+      for (let x = -margin; x <= width + margin; x += sampleStep) {
         const y = x - b;
-        const p = warpPoint(x, y, mx, my);
+        const p = warpPoint(x, y, mx, my, gravityRadius, gravityStrength);
 
         if (!moved) {
           ctx.moveTo(p.x, p.y);
@@ -63,9 +77,9 @@ function drawDeformedDiagonalSet(
     ctx.beginPath();
     let moved = false;
 
-    for (let x = -margin; x <= width + margin; x += SAMPLE_STEP) {
+    for (let x = -margin; x <= width + margin; x += sampleStep) {
       const y = -x + c;
-      const p = warpPoint(x, y, mx, my);
+      const p = warpPoint(x, y, mx, my, gravityRadius, gravityStrength);
 
       if (!moved) {
         ctx.moveTo(p.x, p.y);
@@ -94,14 +108,63 @@ export function MeshBackground() {
     }
 
     let raf = 0;
+    let reduceMotion = false;
+    let isDisposed = false;
+    let lastMoveAt = performance.now();
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
     let currentX = mouseX;
     let currentY = mouseY;
 
+    const reducedMotionQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+
+    const quality: MeshQuality = window.matchMedia("(pointer: coarse)").matches
+      ? {
+          spacingA: 44,
+          spacingB: 68,
+          sampleStep: 32,
+          gravityRadius: 220,
+          gravityStrength: 14,
+        }
+      : {
+          spacingA: 34,
+          spacingB: 52,
+          sampleStep: 24,
+          gravityRadius: 280,
+          gravityStrength: 20,
+        };
+
     const onMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      lastMoveAt = performance.now();
+
+      if (!reduceMotion && raf === 0) {
+        raf = requestAnimationFrame(render);
+      }
+    };
+
+    const onMotionPreferenceChange = (e: MediaQueryListEvent) => {
+      reduceMotion = e.matches;
+
+      if (reduceMotion) {
+        window.removeEventListener("mousemove", onMove);
+        mouseX = window.innerWidth / 2;
+        mouseY = window.innerHeight / 2;
+        currentX = mouseX;
+        currentY = mouseY;
+        if (raf) {
+          cancelAnimationFrame(raf);
+          raf = 0;
+        }
+        drawFrame();
+      } else if (!raf && !isDisposed) {
+        window.addEventListener("mousemove", onMove, { passive: true });
+        lastMoveAt = performance.now();
+        raf = requestAnimationFrame(render);
+      }
     };
 
     const resizeCanvas = () => {
@@ -121,15 +184,17 @@ export function MeshBackground() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
-    const render = () => {
+    const drawFrame = () => {
       resizeCanvas();
 
       const width = window.innerWidth;
       const height = window.innerHeight;
       const isDark = document.documentElement.classList.contains("dark");
 
-      currentX += (mouseX - currentX) * 0.08;
-      currentY += (mouseY - currentY) * 0.08;
+      if (!reduceMotion) {
+        currentX += (mouseX - currentX) * 0.08;
+        currentY += (mouseY - currentY) * 0.08;
+      }
 
       ctx.clearRect(0, 0, width, height);
 
@@ -141,10 +206,13 @@ export function MeshBackground() {
         ctx,
         width,
         height,
-        GRID_SPACING_A,
+        quality.spacingA,
+        quality.sampleStep,
         1,
         currentX,
         currentY,
+        quality.gravityRadius,
+        quality.gravityStrength,
       );
 
       ctx.strokeStyle = isDark
@@ -154,10 +222,13 @@ export function MeshBackground() {
         ctx,
         width,
         height,
-        GRID_SPACING_A,
+        quality.spacingA,
+        quality.sampleStep,
         -1,
         currentX,
         currentY,
+        quality.gravityRadius,
+        quality.gravityStrength,
       );
 
       ctx.strokeStyle = isDark
@@ -167,10 +238,13 @@ export function MeshBackground() {
         ctx,
         width,
         height,
-        GRID_SPACING_B,
+        quality.spacingB,
+        quality.sampleStep,
         1,
         currentX,
         currentY,
+        quality.gravityRadius,
+        quality.gravityStrength,
       );
 
       ctx.strokeStyle = isDark
@@ -180,10 +254,13 @@ export function MeshBackground() {
         ctx,
         width,
         height,
-        GRID_SPACING_B,
+        quality.spacingB,
+        quality.sampleStep,
         -1,
         currentX,
         currentY,
+        quality.gravityRadius,
+        quality.gravityStrength,
       );
 
       const glow = ctx.createRadialGradient(
@@ -192,7 +269,7 @@ export function MeshBackground() {
         0,
         currentX,
         currentY,
-        GRAVITY_RADIUS,
+        quality.gravityRadius,
       );
       glow.addColorStop(
         0,
@@ -206,15 +283,37 @@ export function MeshBackground() {
 
       ctx.fillStyle = glow;
       ctx.fillRect(0, 0, width, height);
-
-      raf = requestAnimationFrame(render);
     };
 
-    window.addEventListener("mousemove", onMove, { passive: true });
-    render();
+    const render = () => {
+      drawFrame();
+
+      const hasRecentInteraction =
+        performance.now() - lastMoveAt < ACTIVE_RENDER_MS;
+      const cursorStillSettling =
+        Math.abs(mouseX - currentX) > 0.5 || Math.abs(mouseY - currentY) > 0.5;
+
+      if (!reduceMotion && (hasRecentInteraction || cursorStillSettling)) {
+        raf = requestAnimationFrame(render);
+      } else {
+        raf = 0;
+      }
+    };
+
+    reduceMotion = reducedMotionQuery.matches;
+    reducedMotionQuery.addEventListener("change", onMotionPreferenceChange);
+
+    if (reduceMotion) {
+      drawFrame();
+    } else {
+      window.addEventListener("mousemove", onMove, { passive: true });
+      raf = requestAnimationFrame(render);
+    }
 
     return () => {
+      isDisposed = true;
       window.removeEventListener("mousemove", onMove);
+      reducedMotionQuery.removeEventListener("change", onMotionPreferenceChange);
       cancelAnimationFrame(raf);
     };
   }, []);

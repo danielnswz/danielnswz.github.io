@@ -17,6 +17,10 @@ const handleSocialClick = (target: "github" | "linkedin" | "email") =>
   analytics.socialClick(target);
 
 export function Hero() {
+  const handleAvatarError: React.ReactEventHandler<HTMLImageElement> = (event) => {
+    event.currentTarget.src = "/avatar.png";
+  };
+
   return (
     <section className="relative min-h-svh flex items-center pt-20 pb-16">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
@@ -42,7 +46,7 @@ export function Hero() {
             </p>
 
             <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm text-ink/60 dark:text-light/60">
-              <span className="font-mono text-xs uppercase tracking-widest text-ink/40 dark:text-light/40">
+              <span className="font-mono text-xs uppercase tracking-widest text-ink/55 dark:text-light/55">
                 Currently
               </span>
               <PillLink mention={currentlyAt} />
@@ -87,7 +91,7 @@ export function Hero() {
             </div>
 
             <div className="mt-7">
-              <p className="mb-3 text-xs font-mono uppercase tracking-widest text-ink/40 dark:text-light/40">
+              <p className="mb-3 text-xs font-mono uppercase tracking-widest text-ink/55 dark:text-light/55">
                 Connect
               </p>
               <div className="flex items-center gap-3">
@@ -130,11 +134,15 @@ export function Hero() {
 
                 <div className="absolute inset-0 z-10 rounded-full bg-accent/15 blur-2xl scale-125" />
                 <img
-                  src="/avatar.png"
+                  src="/avatar.jpg"
                   alt={`${profile.name} — Software Engineer`}
-                  width={224}
-                  height={224}
+                  width={288}
+                  height={320}
+                  sizes="(max-width: 767px) 288px, 288px"
                   loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  onError={handleAvatarError}
                   className="relative z-20 h-80 w-72 rounded-3xl border border-light-border object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03] group-focus-visible:scale-[1.03] dark:border-ink-border"
                 />
 
@@ -181,7 +189,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-2 text-ink/40 dark:text-light/40">
+        <div className="mt-12 flex flex-col items-center gap-2 text-ink/55 dark:text-light/55">
           <span className="text-xs font-mono uppercase tracking-widest">
             Scroll
           </span>

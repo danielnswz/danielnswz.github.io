@@ -5,12 +5,10 @@
 @layer base {
   :root {
     color-scheme: light;
-    --mesh-alpha: 0.40;
     interpolate-size: allow-keywords;
   }
   html.dark {
     color-scheme: dark;
-    --mesh-alpha: 0.18;
   }
 
   html {

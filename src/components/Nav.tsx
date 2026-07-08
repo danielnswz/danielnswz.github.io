@@ -60,7 +60,7 @@ export function Nav() {
               key={s.id}
               type="button"
               onClick={() => go(s.id)}
-              aria-current={active === s.id}
+              aria-current={active === s.id ? "page" : undefined}
               className="nav-link"
             >
               {s.label}
@@ -82,7 +82,8 @@ export function Nav() {
           </a>
           <button
             type="button"
-            aria-label="Toggle menu"
+            aria-controls="mobile-menu"
+            aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((o) => !o)}
             className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-md border border-light-border text-ink/70 hover:bg-light-soft dark:border-ink-border dark:text-light/70 dark:hover:bg-ink-soft"
@@ -107,14 +108,17 @@ export function Nav() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-light-border bg-light/95 backdrop-blur dark:border-ink-border dark:bg-ink/95">
+        <div
+          id="mobile-menu"
+          className="md:hidden border-t border-light-border bg-light/95 backdrop-blur dark:border-ink-border dark:bg-ink/95"
+        >
           <div className="mx-auto max-w-6xl px-4 py-3 grid gap-1">
             {navSections.map((s) => (
               <button
                 key={s.id}
                 type="button"
                 onClick={() => go(s.id)}
-                aria-current={active === s.id}
+                aria-current={active === s.id ? "page" : undefined}
                 className="nav-link text-left"
               >
                 <span className="font-mono text-xs text-accent-dark dark:text-accent mr-2">

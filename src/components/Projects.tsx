@@ -12,11 +12,18 @@ function handleVisitClick(name: string) {
   analytics.projectVisit(name);
 }
 
-const statusStyle: Record<ProjectStatus, string> = {
+const statusTextStyle: Record<ProjectStatus, string> = {
   Live: "text-emerald-500",
   Featured: "text-accent-dark dark:text-accent",
   Shipped: "text-sky-500",
   Piloted: "text-amber-500",
+};
+
+const statusDotStyle: Record<ProjectStatus, string> = {
+  Live: "bg-emerald-500",
+  Featured: "bg-accent-dark dark:bg-accent",
+  Shipped: "bg-sky-500",
+  Piloted: "bg-amber-500",
 };
 
 const MAX_STACK_VISIBLE = 3;
@@ -51,11 +58,11 @@ export function Projects() {
                     <div className="grid gap-1.5">
                       <div className="flex items-center gap-2">
                         <span
-                          className={`h-1.5 w-1.5 rounded-full ${statusStyle[p.status].replace("text-", "bg-")}`}
+                          className={`h-1.5 w-1.5 rounded-full ${statusDotStyle[p.status]}`}
                           aria-hidden
                         />
                         <span
-                          className={`text-xs font-mono font-medium ${statusStyle[p.status]}`}
+                          className={`text-xs font-mono font-medium ${statusTextStyle[p.status]}`}
                         >
                           {p.status}
                         </span>
