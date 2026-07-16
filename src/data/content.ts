@@ -140,7 +140,7 @@ export const experience: ExperienceItem[] = [
     company: "AutoFi",
     companyHandle: "autofi",
     type: "Full-time",
-    period: "Oct 2021 — Jun 2026",
+    period: "Oct 2021 — Current",
     location: "Remote",
     bullets: [
       "Architected and maintained high-traffic consumer applications and scalable APIs for a premier digital retail platform in the automotive industry.",

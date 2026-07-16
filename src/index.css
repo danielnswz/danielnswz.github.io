@@ -21,10 +21,10 @@
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     background-color: #fafafa;
     background-image:
-      radial-gradient(at 12% 18%, rgba(99, 102, 241, 0.34) 0px, transparent 30%),
-      radial-gradient(at 88% 8%, rgba(129, 140, 248, 0.28) 0px, transparent 24%),
-      radial-gradient(at 78% 78%, rgba(99, 102, 241, 0.24) 0px, transparent 24%),
-      radial-gradient(at 22% 88%, rgba(56, 189, 248, 0.20) 0px, transparent 22%);
+      radial-gradient(at 12% 18%, rgba(99, 102, 241, 0.34) 0px, transparent 60%),
+      radial-gradient(at 88% 8%, rgba(129, 140, 248, 0.28) 0px, transparent 55%),
+      radial-gradient(at 78% 78%, rgba(99, 102, 241, 0.24) 0px, transparent 55%),
+      radial-gradient(at 22% 88%, rgba(56, 189, 248, 0.20) 0px, transparent 50%);
     background-attachment: fixed;
     background-size: 100% 100%;
   }
@@ -33,10 +33,10 @@
     @apply text-light;
     background-color: #0a0a0b;
     background-image:
-      radial-gradient(at 12% 18%, rgba(99, 102, 241, 0.26) 0px, transparent 30%),
-      radial-gradient(at 88% 8%, rgba(79, 70, 229, 0.20) 0px, transparent 24%),
-      radial-gradient(at 78% 78%, rgba(99, 102, 241, 0.18) 0px, transparent 24%),
-      radial-gradient(at 22% 88%, rgba(56, 189, 248, 0.16) 0px, transparent 22%);
+      radial-gradient(at 12% 18%, rgba(99, 102, 241, 0.26) 0px, transparent 65%),
+      radial-gradient(at 88% 8%, rgba(79, 70, 229, 0.20) 0px, transparent 60%),
+      radial-gradient(at 78% 78%, rgba(99, 102, 241, 0.18) 0px, transparent 60%),
+      radial-gradient(at 22% 88%, rgba(56, 189, 248, 0.16) 0px, transparent 55%);
     background-attachment: fixed;
     background-size: 100% 100%;
   }
