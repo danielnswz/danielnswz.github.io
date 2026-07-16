@@ -46,6 +46,6 @@ To update any content (name, roles, projects, skills, links), edit **`src/data/c
 4. Your site will be live at `https://<username>.github.io`. (For a `*.github.io` user-page repo, `base: "/"` in `vite.config.ts` is correct out of the box.)
 
 ## Notes
-- All copy is derived from `CV-2026.tex` (April 2025 revision). Resume PDF is served from `public/CV-2026.pdf`.
+- All copy is derived from `CV-2026.tex` (April 2025 revision). Resume PDF is served from `public/CV-Daniel-Klie.pdf`.
 - Respects `prefers-reduced-motion`.
 - Fully keyboard-navigable; focus rings on all interactive elements.

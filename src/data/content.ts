@@ -66,7 +66,7 @@ export const profile = {
   githubHandle: "danielnswz",
   linkedin: "https://linkedin.com/in/dklie",
   linkedinHandle: "linkedin.com/in/dklie",
-  resumeUrl: "/CV-2026.pdf",
+  resumeUrl: "/CV-Daniel-Klie.pdf",
   yearsExperience: "8+",
   liveProjects: "10+",
 } as const;
