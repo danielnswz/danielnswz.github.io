@@ -56,7 +56,7 @@ export const profile = {
   initials: "DK",
   title: "Software Engineer · Full-Stack · Distributed Systems · Cloud",
   tagline:
-    "I build production-grade web, mobile, and cloud systems. Clean APIs, thoughtful UX, and systems that hold up under real-world load. Argentina — shipping globally.",
+    "I design and scale robust web architectures, resilient backends, and intelligent distributed systems with a strong focus on modern JavaScript, cloud infrastructure, and AI-assisted delivery. Argentina - shipping globally.",
   status: "Available for opportunities",
   location: "Argentina",
   timezone: "GMT-3",
@@ -95,20 +95,11 @@ export const profileConstellation = [
   "LLM API Integrations",
 ] as const;
 
-export const heroNarrative = [
-  "I'm a software engineer with over 8 years building production web, mobile, and cloud systems.",
-  "Currently shipping full-stack work",
-  "for a premier automotive fintech and digital retail platform at",
-  "Previously architected mobile + serverless platforms at",
-  "and",
-  "— always pairing clean front-end UX with resilient back-end data flows.",
-] as const;
-
 export const aboutBio = [
-  "I'm a software engineer with over 8 years of experience designing, scaling, and maintaining robust web and mobile applications. My focus is on modern JavaScript ecosystems, distributed systems architecture, and cloud infrastructure.",
-  "I've led technical teams and delivered high-impact solutions for the automotive fintech and digital retail industries — work spanning high-traffic consumer apps, serverless backends, and mobile apps bridging custom hardware.",
-  "Beyond the code: I sweat the details, communicate proactively, and care about the end user. I ship systems designed to hold up under real-world load without losing elegance.",
-  "Fluent across the stack: React/Redux on the front end; Node.js, GraphQL, and RabbitMQ for back-end coordination; AWS Lambdas and serverless for elastic scale; React Native for cross-platform mobile.",
+  "I'm a Full-Stack Software Engineer with over 8 years of experience designing, scaling, and maintaining robust web architectures, scalable backends, and intelligent distributed systems.",
+  "My work spans modern JavaScript ecosystems, cloud infrastructure, and AI-assisted development workflows, with a proven track record of delivering high-impact software solutions for the fintech and digital retail industries.",
+  "I enjoy leading technical engineering initiatives, pairing strong product thinking with resilient systems design, and turning complex requirements into reliable software that scales.",
+  "Fluent across the stack: modern React and front-end architecture, Node.js and GraphQL for backend coordination, and cloud-native platforms that support high-traffic, distributed product experiences.",
 ] as const;
 
 export const aboutStats = [
