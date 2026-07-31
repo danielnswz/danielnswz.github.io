@@ -1,0 +1,140 @@
+
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{hyperref}
+\usepackage{color}
+
+% Color definitions
+\definecolor{primary}{RGB}{30, 41, 59}   % Slate 800
+\definecolor{secondary}{RGB}{71, 85, 105} % Slate 600
+\definecolor{linkcolor}{RGB}{37, 99, 235} % Blue 600
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkcolor,
+    filecolor=linkcolor,
+    urlcolor=linkcolor,
+}
+
+% Section formatting without titlesec
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{0pt}{12pt}{6pt}{\Large\bfseries\color{primary}}}
+\makeatother
+
+% Itemize settings without enumitem
+\setlength{\itemsep}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\topsep}{2pt}
+\setlength{\leftmargini}{1.5em}
+
+\begin{document}
+
+\pagestyle{empty}
+
+% Header
+\begin{center}
+    {\Huge \textbf{\color{primary} Daniel Klie}} \\[6pt]
+    {\Large \textbf{\color{secondary} Senior Full Stack Engineer}} \\[6pt]
+    \small 
+    Argentina \quad | \quad 
+    \href{mailto:danielnswz@gmail.com}{danielnswz@gmail.com} \quad | \quad 
+    \href{https://www.linkedin.com/in/dklie}{LinkedIn} \quad | \quad 
+    \href{https://github.com/danielnswz}{GitHub}
+\end{center}
+
+\vspace{8pt}
+
+% Summary
+\section{Summary}
+A highly skilled Senior Full-Stack Software Engineer with over 8 years of commercial experience designing, scaling, and maintaining robust web architectures, scalable backends, and intelligent distributed systems. Expert in modern JavaScript/TypeScript ecosystems (React, React Native, Node.js, NestJS), cloud infrastructure (AWS, CI/CD), NoSQL/SQL data stores, and augmenting software development through AI-assisted workflows and multi-agent AI orchestration pipelines. Proven track record of leading technical engineering initiatives, coordinating cross-functional delivery across product, design, and development teams, and delivering high-impact software solutions for the fintech and digital retail industries.
+
+% Skills
+\section{Skills}
+\begin{itemize}
+    \item \textbf{Languages and Frameworks:} JavaScript, TypeScript, Node.js, Go (Golang), PHP, React, Next.js, React Native, Preact, Angular 6+, AngularJS, NestJS, Laravel, Redux, Redux-Thunk, Redux-Saga, Apollo GraphQL, Micro-frontends (Module Federation), TailwindCSS, SCSS, Stylus
+    \item \textbf{OS \& Platforms:} AWS (Lambdas, Serverless Framework, S3, SQS, SES, Cognito), POS terminals, Hardware SDKs
+    \item \textbf{DBMS:} PostgreSQL, MySQL, Redis, Sequelize ORM, MongoDB, Mongoose ODM
+    \item \textbf{SCM, Build, CI/CD:} Monorepo (NX), GitHub Actions / CI/CD Pipelines, RabbitMQ, REST APIs, OAuth2
+    \item \textbf{Other:} Software Design Patterns, Legacy Modernization, Agentic AI Tools (Claude Code, Codex, GitHub Copilot), Native SDK Bridges, Dependency Injection, Re-select, Flex-Layout, Metrics \& Charts Libraries, Multi-agent AI Orchestration (LLM Tool Calling, SSE Streaming)
+\end{itemize}
+
+% Employment History
+\section{Employment History}
+
+\noindent\textbf{AutoFi} \hfill \textbf{2021 -- Present} \\
+\textit{Full Stack Developer} \hfill \textit{Remote}
+\begin{itemize}
+    \item \textbf{Project Scale:} Rearchitected, scaled, and maintained high-throughput microservices and public-facing APIs supporting a premier automotive digital retail platform. Processed thousands of daily financial transactions and complex multi-party lender/dealership integrations across North America while maintaining high platform availability.
+    \item \textbf{Key Impact:} Modernized legacy backend monolith bottlenecks into asynchronous microservices, reducing service latency and API response times. Engineered a Session Service with custom Multi-Factor Authentication (MFA) from requirements gathering to full implementation, successfully mitigating critical automated attack spikes. Integrated agentic AI development tools (Claude Code, GitHub Copilot) into CI/CD pipelines for automated code reviews and boilerplate generation, boosting engineering velocity and improving codebase test coverage.
+    \item \textbf{Activities \& Responsibilities:} Architected and maintained high-traffic consumer applications and scalable APIs for a premier digital retail platform in the automotive industry; leveraged Micro-frontends (Module Federation), GraphQL, Go, and RabbitMQ to optimize system modularity, UI performance, and asynchronous communication; acted as Subject Matter Expert (SME) across core microservices, providing technical guidance, clear documentation, and cross-team knowledge sharing.
+    \item \textbf{Technologies:} JavaScript, TypeScript, React, Preact, Redux, Redux-Thunk, Apollo GraphQL, Node.js, Next.js, NestJS, Monorepo (NX), RabbitMQ, Micro-frontends (Module Federation), Redis, MongoDB, Mongoose ODM, GitHub Actions / CI/CD Pipelines, REST APIs, OAuth2, Agentic AI Tools, TailwindCSS, SCSS, Stylus
+\end{itemize}
+
+\vspace{6pt}
+
+\noindent\textbf{SweatWorks} \hfill \textbf{2020 -- 2021} \\
+\textit{Full Stack Developer} \hfill \textit{Remote}
+\begin{itemize}
+    \item \textbf{Project Scale:} Built a backend serverless architecture that sustained massive traffic spikes and concurrent telemetry updates from thousands of active participants during nationwide live corporate race events.
+    \item \textbf{Key Impact:} Eliminated latency bottlenecks and database crashes under peak load by shifting heavy synchronous workloads into event-driven queues, maintaining 99.9\% platform uptime during nationwide live events.
+    \item \textbf{Activities \& Responsibilities:} Developed and scaled a Corporate Challenge Race System utilizing a serverless architecture with AWS Lambdas and Node.js; implemented critical cloud infrastructure including AWS Cognito for authentication, SQS for queuing, and a Redis-based rate limiter to handle high-throughput traffic spikes safely; designed relational schemas and data access layers with Sequelize ORM to ensure ACID operations.
+    \item \textbf{Technologies:} JavaScript, TypeScript, React, Redux, Redux-Thunk, Re-select, Node.js, Serverless framework, AWS (Lambdas, S3, SQS, SES, Cognito, ElasticCache), SQL, Sequelize ORM, REST APIs, Redis, SCSS
+\end{itemize}
+
+\vspace{6pt}
+
+\noindent\textbf{Cognizant Softvision} \hfill \textbf{2019 -- 2020} \\
+\textit{Senior Software Engineer} \hfill \textit{Argentina}
+\begin{itemize}
+    \item \textbf{Activities \& Responsibilities:} Led the engineering team in developing a robust sales application, collaborating closely with product and design to translate concepts into technical requirements and drive end-to-end feature delivery; coordinated with cross-functional technical leads to ensure technical alignment across pods; architected custom native bridges to establish seamless device communication between the mobile app and specialized hardware SDKs (POS terminals, printers, and mounting stands).
+    \item \textbf{Technologies:} JavaScript, TypeScript, React, React Native, Redux, Redux-Saga, Re-select, SQL, POS terminals \& Native SDK Bridges, Dependency Injection
+\end{itemize}
+
+\vspace{6pt}
+
+\noindent\textbf{Fortesza} \hfill \textbf{2018 -- 2019} \\
+\textit{Front-end Developer} \hfill \textit{Remote}
+\begin{itemize}
+    \item \textbf{Activities \& Responsibilities:} Developed a multi-user crowdfunding platform tailored for corporate financing, building complex administration panels for both investors and companies; spearheaded the migration of the core web application to Angular 6+, leveraging reactive forms, Flex-Layout, and advanced charts libraries to maximize data visualization and frontend performance.
+    \item \textbf{Technologies:} JavaScript, TypeScript, Angular 6+, Flex-Layout, Reactive Forms, Metrics \& Charts Libraries, Laravel
+\end{itemize}
+
+\vspace{6pt}
+
+\noindent\textbf{Zonngo} \hfill \textbf{2017 -- 2018} \\
+\textit{Back-end Developer (Project-based)} \hfill \textit{Remote}
+\begin{itemize}
+    \item \textbf{Activities \& Responsibilities:} Designed and delivered a secure Node.js backend, REST APIs, and OAuth server components for a retail price monitoring platform.
+    \item \textbf{Technologies:} JavaScript, Node.js, MongoDB, Mongoose ODM, MySQL, REST APIs, OAuth2 (Client \& Server)
+\end{itemize}
+
+\vspace{6pt}
+
+\noindent\textbf{Agentes Informáticos, C.A.} \hfill \textbf{2015 -- 2016} \\
+\textit{Full Stack Web Developer (Project-based)} \hfill \textit{Trabajo Remoto}
+\begin{itemize}
+    \item \textbf{Activities \& Responsibilities:} Engineered dynamic inventory web software applications utilizing PHP Laravel and AngularJS.
+    \item \textbf{Technologies:} JavaScript, PHP, Laravel, Blade, AngularJS, MySQL, Eloquent ORM
+\end{itemize}
+
+\vspace{6pt}
+
+\noindent\textbf{Seguros Caroní, S.A.} \hfill \textbf{2016} \\
+\textit{Professional Internship} \hfill \textit{Puerto Ordaz}
+\begin{itemize}
+    \item \textbf{Activities \& Responsibilities:} Engineered health insurance management databases and supporting internal software workflows.
+    \item \textbf{Technologies:} PHP, JavaScript, MySQL, SQL, Database Design, Laravel, Eloquent ORM, AngularJS, Bootstrap, jQuery
+\end{itemize}
+
+% Education
+\section{Education}
+\noindent\textbf{Universidad Nacional Experimental de Guayana} \hfill \textbf{2012 -- 2018} \\
+Ingeniería Informática
+
+% Languages
+\section{Languages}
+\noindent \textbf{Español:} Native \quad | \quad \textbf{Inglés:} Full Professional Proficiency
+
+\end{document}

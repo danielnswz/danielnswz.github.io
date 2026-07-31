@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build:dev": "vite build --mode development",
+    "build:cv": "set -e; ROOT_DIR=$(dirname \"$npm_package_json\"); TMP_DIR=$(mktemp -d); pdflatex -interaction=nonstopmode -halt-on-error -output-directory=\"$TMP_DIR\" \"$ROOT_DIR/src/data/CV-Daniel-Klie.tex\" >/dev/null; cp \"$TMP_DIR/CV-Daniel-Klie.pdf\" \"$ROOT_DIR/public/CV-Daniel-Klie.pdf\"; rm -rf \"$TMP_DIR\"",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"
   },
